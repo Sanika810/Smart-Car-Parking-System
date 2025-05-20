@@ -1,71 +1,100 @@
-# Smart-Car-Parking-System
-Project Overview
-This project is a smart car parking management system for a lot with 50 parking spaces, implemented in C using advanced data structures like AVL Tree / B Tree / B+ Tree and file handling instead of arrays.
+# Smart Car Parking Lot System
 
-The system automates:
-Parking space allocation based on membership
-Vehicle registration and tracking
-Billing and membership upgrades
-Revenue and usage analytics using tree-based structures
+Welcome to the **Smart Car Parking Lot System**, a C-based application designed to manage a car parking lot using efficient data structures and logical flow. This system utilizes **B+ Trees** for storing and managing both vehicles and parking spaces, enabling quick insertion, deletion, and range search operations.
 
-🛠️ Tools & Technologies
-C Language
-File Handling for persistent storage (no arrays used)
-B+ Tree for efficient data management
+## Features
 
-🎯 Features
-✅ Entry Operations
-Register new vehicle with:
-Vehicle number (unique), owner name
-Arrival time (auto-recorded)
-Initial membership and parking hours = 0
-Allocate parking space based on membership tier:
-Golden: Space 1–10 (nearest)
-Premium: Space 11–20
-Regular: First available from space 21–50
-For existing vehicles, update arrival time and space status
+*  **Vehicle Entry and Exit**
+*  **Sorting and Analysis** based on:
 
-✅ Exit Operations
-Auto-calculate parking hours
-Add to total parking hours
+  * Number of parkings done
+  * Amount paid by the vehicle (range search)
+  * Occupancy frequency of parking spaces
+  * Revenue generated per space
+*  **B+ Tree** based dynamic insertion and management
+* File persistence with:
 
-Update membership:
-100+ hrs → Premium
-200+ hrs → Golden
+  * `vehicle_data.txt`
+  * `parking_data.txt`
 
-Compute billing:
-₹100 for first 3 hours, ₹50/hr after
-10% discount for members
-Free up allocated parking space
+## Data Structures
 
-✅ Analytics & Reports
-Sort and display vehicles based on:
-Total parkings
-Total amount paid
-Sort and display parking spaces based on:
-Occupancy frequency
-Revenue generated
-Query vehicles by amount paid within a given range
+* **vehicleNode** and **spaceNode** represent the B+ Tree nodes for vehicles and parking spaces, respectively.
+* These trees are dynamically loaded from files at the start and updated back on changes.
 
-📁 Data Storage:
-Initial data for 20 parking spaces (with mixed membership levels) is generated using file handling
+## Files Used
 
-All updates (vehicle records, parking space status, membership, billing) persist to file
-📌 Instructions to Run
-1.Compile the code using a C compiler (e.g., gcc):
-gcc parking_system.c -o parking_system
-2.Run the program:
-./parking_system
-3.Follow on-screen menu to simulate vehicle entry, exit, and reporting.
+* `vehicle_data.txt` – Stores vehicle information
+* `parking_data.txt` – Stores parking space data
 
-Developer Contribution :
-Designed and implemented parking space management logic
-Developed AVL/B/B+ Tree structures from scratch
-Integrated membership and billing policies
-Implemented file-based persistent storage
+## How to Use
 
-✅ Advantages
-Fully dynamic structure using B/B+ Tree or AVL Tree
-No arrays used — ensures flexible, scalable data handling
-Simulates real-world database behavior using file-based persistence
-Membership and billing handled automatically with customizable policies
+1. Compile the program using a C compiler like GCC:
+
+   ```sh
+   gcc -o parking_system main.c
+   ```
+2. Run the executable:
+
+   ```sh
+   ./parking_system
+   ```
+3. Interact with the system using the menu:
+
+   * Enter vehicle details for parking
+   * Exit a vehicle and compute payment
+   * Sort data or perform analysis
+   * Exit and save all data
+
+## Highlights
+
+* **Automatic timestamping** using `time(NULL)` on entry and exit.
+* **File Persistence**: Automatically saves all changes back to data files after every update.
+* **Range Search**: Efficient search of vehicles based on payment amount range.
+
+## Memory Management
+
+* All dynamically allocated memory (for B+ Trees) is freed before exit.
+
+## Requirements
+
+* C compiler (e.g., GCC)
+* Compatible with Windows/Linux
+
+## Status Codes
+
+* All major operations return a `statusCode` that indicates success or failure.
+
+## Example Menu Output
+
+```
+1. Vehicle Entry
+2. Vehicle Exit
+3. Sorting and analysis
+4. Exit system
+```
+
+## Example Input
+
+```
+Enter your vehicle details
+Enter the vehicle number:
+1001
+Enter the name of owner:
+John Doe
+
+Enter your vehicle number:
+1001
+
+Enter the amount range
+minimum amount: 50
+maximum amount: 500
+```
+
+## Author
+
+Developed as part of a smart parking lot simulation using fundamental data structures and logical modeling.
+
+---
+
+Feel free to extend or modify this system to add more features such as reservation, graphical interface, or remote database support!
